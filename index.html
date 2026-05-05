@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOVA Atelier | 设计介绍</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f0f12;
+      --bg-soft: #17171e;
+      --text: #f5f0e6;
+      --muted: #b8af9b;
+      --line: #37343f;
+      --accent: #dba85b;
+      --accent-2: #79a0ff;
+      --max-width: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1200px 600px at 12% -15%, rgba(219, 168, 91, 0.18), transparent 62%),
+        radial-gradient(900px 500px at 90% 20%, rgba(121, 160, 255, 0.16), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Noto Sans SC", sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .grain::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.06) 0.8px, transparent 0.8px);
+      background-size: 3px 3px;
+      opacity: 0.18;
+      mix-blend-mode: soft-light;
+    }
+
+    .wrap {
+      width: min(100% - 3rem, var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 2rem 0 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tag {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      padding: 4.5rem 0 3rem;
+      align-items: end;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.8rem, 8vw, 6.2rem);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      text-wrap: balance;
+    }
+
+    .hero p {
+      margin: 1.25rem 0 0;
+      color: var(--muted);
+      max-width: 40ch;
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    .badge {
+      justify-self: end;
+      border: 1px solid var(--line);
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.08));
+      padding: 1.4rem 1.6rem;
+      width: min(100%, 330px);
+    }
+
+    .badge span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .badge strong {
+      display: block;
+      margin-top: 0.7rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.55rem;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    section {
+      padding: 2.6rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin: 0 0 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      padding: 1.2rem;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+      min-height: 180px;
+      transform: translateY(24px);
+      opacity: 0;
+      animation: rise 0.8s ease forwards;
+    }
+
+    .card:nth-child(2) { animation-delay: 0.08s; }
+    .card:nth-child(3) { animation-delay: 0.16s; }
+    .card h3 {
+      margin: 0 0 0.8rem;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 0.95rem;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      padding: 1rem;
+      background: var(--bg-soft);
+    }
+
+    .step b {
+      color: var(--accent-2);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+
+    .step h4 {
+      margin: 0.55rem 0 0.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.9rem;
+    }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 2rem;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(100deg, rgba(219, 168, 91, 0.16), rgba(121, 160, 255, 0.06)),
+        #131318;
+    }
+
+    .cta h2 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 600;
+    }
+
+    .btn {
+      border: 1px solid rgba(245, 240, 230, 0.5);
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.8rem 1.15rem;
+      font-size: 0.92rem;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      background: var(--text);
+      color: #111;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    @keyframes rise {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .badge {
+        justify-self: start;
+      }
+      .grid-3,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+      .cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body class="grain">
+  <header>
+    <div class="wrap topbar">
+      <div class="brand">NOVA Atelier</div>
+      <div class="tag">品牌设计 / 视觉系统 / 数字体验</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" style="border-top: none;">
+      <div>
+        <p class="kicker">Design Introduction</p>
+        <h1>把想法塑造成<br />可被记住的视觉资产</h1>
+        <p>
+          我们是一家专注于高识别度品牌体验的设计团队。通过策略、视觉和交互的一体化方法，
+          将抽象定位转化为具有商业表达力的页面、系统与内容，让品牌在第一眼就被理解，在第二眼就被记住。
+        </p>
+      </div>
+      <aside class="badge">
+        <span>2026 Selection</span>
+        <strong>12 个行业项目<br />平均 4.7 周交付</strong>
+      </aside>
+    </section>
+
+    <section>
+      <p class="kicker">我们如何定义好设计</p>
+      <div class="grid-3">
+        <article class="card">
+          <h3>01 | 可识别性</h3>
+          <p>从版式语言到色彩秩序，建立“看一眼就知道是谁”的视觉签名，而不是模板化页面。</p>
+        </article>
+        <article class="card">
+          <h3>02 | 可转化性</h3>
+          <p>将故事结构映射为用户路径，优化关键信息节奏，提升咨询、留资与信任建立效率。</p>
+        </article>
+        <article class="card">
+          <h3>03 | 可延展性</h3>
+          <p>沉淀设计规则与组件体系，确保官网、活动页、社媒物料在多触点保持一致质量。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">工作流程</p>
+      <div class="timeline">
+        <article class="step">
+          <b>STEP 1</b>
+          <h4>品牌访谈</h4>
+          <p>聚焦目标人群、竞争环境与价值主张，统一叙事核心。</p>
+        </article>
+        <article class="step">
+          <b>STEP 2</b>
+          <h4>视觉方向</h4>
+          <p>输出 2-3 套风格提案，确认字体、色板、构图与动效基调。</p>
+        </article>
+        <article class="step">
+          <b>STEP 3</b>
+          <h4>页面构建</h4>
+          <p>以模块化方式搭建设计介绍页，并完成响应式与文案协同。</p>
+        </article>
+        <article class="step">
+          <b>STEP 4</b>
+          <h4>交付上线</h4>
+          <p>交付可维护代码与设计资产，支持后续内容扩展与复用。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="cta">
+        <h2>准备好把你的品牌，<br />做成一个被主动分享的页面了吗？</h2>
+        <a class="btn" href="mailto:hello@novaatelier.design">预约 30 分钟设计沟通</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    NOVA Atelier © 2026 — Crafted for distinctive brands.
+  </footer>
+</body>
+</html>
